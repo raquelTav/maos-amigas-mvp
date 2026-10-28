@@ -4,7 +4,7 @@ Sistema web simples para a Associação Mãos Amigas (Bairro Bom Jardim, Fortale
 controlar o cadastro de famílias, a retirada mensal de cestas básicas e o estoque.
 
 ## Problema
-O controle é feito em cadcernos e em uma planilha desatualizada, o que gera
+O controle é feito em cadernos e em uma planilha desatualizada, o que gera
 cadastros duplicados, estoque desconhecido e relatórios demorados.
 
 ## Funcionalidades do MVP
