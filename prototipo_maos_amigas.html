@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Protótipo: Associação Mãos Amigas</title>
+<style>
+:root{--bg:#f3f1ec;--card:#fff;--ink:#1d2b24;--mut:#4a5a52;--pri:#1f6b4a;--priink:#fff;--line:#c9d2cc;--ok:#e3f1e8;--okink:#14502f;--warn:#fff1d6;--warnink:#6b3f00;--warnbd:#b36b00;--off:#e9eaee;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121815;--card:#1b241f;--ink:#eef3ef;--mut:#b4c2ba;--pri:#5cc795;--priink:#0c2218;--line:#3a4a41;--ok:#1d3a2b;--okink:#bfe9d0;--warn:#3d2e10;--warnink:#ffdca0;--warnbd:#e0a040;--off:#2a312d}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 "Atkinson Hyperlegible","Segoe UI",Arial,sans-serif;padding:20px}
+h1{font-size:1.3rem;margin:0 0 4px}.sub{color:var(--mut);margin:0 0 20px}
+.row{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.tela{width:360px;max-width:100%}
+.cap{font-weight:700;margin:0 0 8px}
+.frame{background:var(--card);border:2px solid var(--line);border-radius:18px;overflow:hidden}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 14px;background:var(--pri);color:var(--priink);font-weight:700}
+.top small{font-weight:400;display:block}
+.pill{border:2px solid currentColor;border-radius:99px;padding:4px 10px;font-size:.85rem;white-space:nowrap}
+.body{padding:14px;display:grid;gap:12px}
+button,.btn{min-height:56px;width:100%;border-radius:12px;border:2px solid var(--pri);background:var(--pri);color:var(--priink);font:700 1.05rem inherit;font-family:inherit;text-align:left;padding:10px 14px;display:flex;gap:10px;align-items:center}
+.btn2{background:var(--card);color:var(--pri)}
+button:focus-visible,input:focus-visible{outline:4px solid var(--warnbd);outline-offset:2px}
+label{font-weight:700;display:block;margin-bottom:4px}
+input{width:100%;min-height:48px;border:2px solid var(--mut);border-radius:10px;padding:8px 12px;font:inherit;background:var(--card);color:var(--ink)}
+.item{border:2px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.item b{display:block}.item span{color:var(--mut);font-size:.9rem}
+.sel{border-color:var(--pri)}
+.tag{font-weight:700;font-size:.85rem;border-radius:8px;padding:4px 8px;border:2px solid;white-space:nowrap}
+.pend{background:var(--warn);color:var(--warnink);border-color:var(--warnbd)}
+.done{background:var(--ok);color:var(--okink);border-color:var(--okink)}
+.strip{background:var(--off);border:2px dashed var(--mut);border-radius:10px;padding:8px 10px;font-size:.9rem}
+.alert{background:var(--warn);color:var(--warnink);border:3px solid var(--warnbd);border-radius:12px;padding:10px 12px;font-weight:700}
+.big{font-size:2.4rem;font-weight:800;line-height:1}
+.mov{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:6px 0;font-size:.92rem}
+.nota{color:var(--mut);font-size:.85rem}
+</style>
+</head>
+<body>
+<h1>Associação Mãos Amigas: protótipo do MVP</h1>
+<p class="sub">Três telas para captura (celular, 360 px). Todos os dados são fictícios.</p>
+<div class="row">
+
+<section class="tela" id="tela1"><p class="cap">Tela 1: Menu inicial</p>
+<div class="frame">
+<div class="top"><div>Associação Mãos Amigas<small>Bruno Modelo, voluntário</small></div><div style="text-align:right"><span class="pill">● Online</span></div></div>
+<div class="body">
+<button>📋 Registrar retirada</button>
+<button class="btn2">➕ Cadastrar família</button>
+<p class="nota">Estoque e Relatório aparecem apenas para a coordenação.</p>
+<div class="strip">Sua sessão termina em 2 minutos. Toque para continuar.</div>
+<button class="btn2" style="min-height:48px;justify-content:center">Sair</button>
+</div></div></section>
+
+<section class="tela" id="tela2"><p class="cap">Tela 2: Registrar retirada</p>
+<div class="frame">
+<div class="top"><div>Registrar retirada</div><span class="pill">● Online</span></div>
+<div class="body">
+<button class="btn2" style="min-height:48px;width:auto">← Voltar ao início</button>
+<div><label for="b">Buscar por nome ou documento</label><input id="b" value="Ana"></div>
+<button style="justify-content:center">Buscar</button>
+<div class="item sel"><div><b>Ana Exemplo</b><span>Doc. 1001 · 4 pessoas</span></div><span class="tag pend">● Pendente</span></div>
+<div class="item"><div><b>Marta Teste</b><span>Doc. 1002 · 3 pessoas</span></div><span class="tag done">✔ Já retirou</span></div>
+<div class="item" style="flex-direction:column;align-items:stretch;border-color:var(--pri)"><b>Confirmar retirada para Ana Exemplo (4 pessoas)?</b>
+<button style="justify-content:center;margin-top:8px">Registrar retirada</button>
+<button class="btn2" style="justify-content:center;margin-top:8px;min-height:48px">Cancelar</button></div>
+<div class="strip">Sem sinal: retirada salva no aparelho, será enviada quando a internet voltar.</div>
+</div></div></section>
+
+<section class="tela" id="tela3"><p class="cap">Tela 3: Estoque e relatório</p>
+<div class="frame">
+<div class="top"><div>Estoque e relatório<small>Carla Exemplo, coordenação</small></div><span class="pill">● Online</span></div>
+<div class="body">
+<div><span class="nota">Saldo atual</span><div class="big">12 cestas</div></div>
+<div class="alert">⚠ Estoque baixo: restam 12 cestas (limite: 15)</div>
+<div><label for="q">Quantidade da doação</label><input id="q" value="30"></div>
+<div><label for="o">Origem da doação</label><input id="o" value="Doação de comerciante (fictício)"></div>
+<button style="justify-content:center">Salvar entrada</button>
+<div><b>Últimas movimentações</b>
+<div class="mov"><span>02/10 · Entrada</span><b>+50</b></div>
+<div class="mov"><span>05/10 · Saída (Ana Exemplo)</span><b>−1</b></div></div>
+<div><label for="m">Mês do relatório</label><input id="m" value="Outubro de 2026"></div>
+<button class="btn2" style="justify-content:center">Gerar relatório do mês</button>
+<div class="item"><span>38 atendidas · 142 pendentes · saldo 12</span></div>
+<button style="justify-content:center">⬇ Baixar PDF</button>
+</div></div></section>
+
+</div>
+</body>
+</html>
