@@ -29,6 +29,17 @@ e acesso a dados (ORM do Django).
 3. Rodar `python manage.py migrate`
 4. Rodar `python manage.py runserver`
 
+## Estrutura do repositório
+- docs/: requisitos e documentação do projeto
+- prototipo_maos_amigas.html: protótipo das três telas
+- requirements.txt: dependências Python
+- .env.example: modelo das variáveis de ambiente (sem valores reais)
+
+## Como executar (em desenvolvimento)
+1. Criar um ambiente virtual e instalar `requirements.txt`
+2. Copiar `.env.example` para `.env` e preencher os valores
+3. Executar as migrações do banco e iniciar o servidor
+
 ## Status
 Em desenvolvimento. Protótipo e plano de validação concluídos.
 
