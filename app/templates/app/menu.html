@@ -1,0 +1,9 @@
+{% extends "app/base.html" %}
+{% block conteudo %}
+<h1>Menu inicial</h1>
+<a class="botao" href="{% url 'retirada' %}">📋 Registrar retirada</a>
+{% if eh_coordenacao %}
+<a class="botao secundario" href="{% url 'estoque' %}">📦 Estoque</a>
+{% endif %}
+<p>Usuário: {{ user.username }}</p>
+{% endblock %}

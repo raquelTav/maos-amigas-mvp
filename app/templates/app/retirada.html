@@ -1,0 +1,27 @@
+{% extends "app/base.html" %}
+{% block conteudo %}
+<h1>Registrar retirada</h1>
+<form method="get" style="display:grid;gap:12px">
+<label for="q">Buscar por nome ou documento</label>
+<input id="q" name="q" value="{{ termo }}">
+<button class="botao" type="submit">Buscar</button>
+</form>
+{% if termo and not familias %}
+<p class="msg">Nenhuma família encontrada.</p>
+{% endif %}
+{% for f in familias %}
+<div class="item">
+<div><strong>{{ f.nome_responsavel }}</strong><br>Documento: {{ f.documento }} · {{ f.qtd_pessoas }} pessoas</div>
+{% if f.ja_retirou %}
+<span class="selo ok">✔ Já retirou</span>
+{% else %}
+<span class="selo pend">● Pendente</span>
+<form method="post" action="{% url 'registrar' f.id %}">
+{% csrf_token %}
+<input type="hidden" name="q" value="{{ termo }}">
+<button class="botao" type="submit">Registrar retirada</button>
+</form>
+{% endif %}
+</div>
+{% endfor %}
+{% endblock %}

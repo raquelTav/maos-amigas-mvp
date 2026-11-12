@@ -1,0 +1,14 @@
+{% extends "app/base.html" %}
+{% block conteudo %}
+<h1>Estoque</h1>
+<p>Saldo atual</p>
+<p class="grande">{{ saldo }} cestas</p>
+{% if saldo <= limite %}<p class="alerta" role="alert">⚠ Estoque baixo: restam {{ saldo }} cestas (limite: {{ limite }})</p>{% endif %}
+<form method="post" style="display:grid;gap:12px">{% csrf_token %}
+  <label for="quantidade">Quantidade da doação</label>
+  <input id="quantidade" name="quantidade" type="number" min="1">
+  <button class="botao" type="submit">Salvar entrada</button>
+</form>
+<h2>Últimas movimentações</h2>
+{% for m in movs %}<p class="msg">{{ m.data_movimento|date:"d/m" }} · {{ m.get_tipo_display }} · {{ m.quantidade }}</p>{% endfor %}
+{% endblock %}

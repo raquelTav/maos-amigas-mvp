@@ -122,3 +122,24 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# --- Produção (Render): ativa só quando a variável RENDER existe ---
+EM_PRODUCAO = "RENDER" in os.environ
+if EM_PRODUCAO:
+    import dj_database_url
+
+    DEBUG = False
+    SECRET_KEY = os.environ["SECRET_KEY"]
+    _host = os.environ.get("RENDER_EXTERNAL_HOSTNAME", "")
+    ALLOWED_HOSTS = [_host] if _host else []
+    CSRF_TRUSTED_ORIGINS = [f"https://{_host}"] if _host else []
+    DATABASES = {"default": dj_database_url.config(conn_max_age=600)}
+    MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+    STATIC_ROOT = BASE_DIR / "staticfiles"
+    STORAGES = {
+        "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+        "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
+    }
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
